@@ -1,5 +1,18 @@
+import emojisDataJson from "./emojisData.json"
+
+export const emojisData = emojisDataJson;
+
 const defaultOptions = {
-  // emojis: {}, required
+  // emojis: {        // required param
+  // "emoji1": {
+  //     "altText": "..someAlt Emoji1 Grapheme Cluster..",
+  //     "url": "..emoji1 URL .."
+  //      },
+  // "emoji2": {
+  //     "altText": "..someAlt Emoji2 Grapheme Cluster..",
+  //     "url": "..emoji2 URL .."
+  //      }, etc..
+  // },
   unicode: false
 };
 
@@ -25,25 +38,37 @@ export function markedEmoji(options) {
           return;
         }
 
-        const name = match[1];
-        const emoji = options.emojis[name];
+        const shortName = match[1]; //markdown shortcode
 
-        if (!emoji) {
+        if ( // not found :short_code: emojis or mkdocs defined emojis
+          !(shortName in options.emojis)
+          || !("altText" in options.emojis[shortName])
+          || !("url" in options.emojis[shortName])
+          ) {
+          return;
+        }
+
+        var altText;
+        altText = options.emojis[shortName]["altText"];
+
+        const emojiUrl = options.emojis[shortName].url;
+        if (!emojiUrl) {
           return;
         }
 
         return {
           type: 'emoji',
           raw: match[0],
-          name,
-          emoji
+          shortName,
+          emojiUrl,
+          altText
         };
       },
       renderer(token) {
         if (options.unicode) {
           return token.emoji;
         } else {
-          return `<img alt="${token.name}" src="${token.emoji}"${this.parser.options.xhtml ? ' /' : ''}>`;
+          return `<img class="emoji twemoji" alt="${token.altText}" title=":${token.shortName}:" src="${token.emojiUrl}"${this.parser.options.xhtml ? ' /' : ''}>`;
         }
       }
     }]

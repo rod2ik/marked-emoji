@@ -1,7 +1,7 @@
 {
-  "name": "marked-emoji",
-  "version": "1.0.1",
-  "description": "Add text emoji support to marked",
+  "name": "@rod2ik/marked-emoji",
+  "version": "1.0.2",
+  "description": "Add text emoji support to marked : meant to be compatible with revealjs and its embedding inside mkdocs",
   "main": "./lib/index.cjs",
   "module": "./src/index.js",
   "browser": "./lib/index.umd.js",
@@ -9,7 +9,11 @@
   "keywords": [
     "marked",
     "extension",
+    "reveal",
+    "revealjs",
+    "mkdocs",
     "emoji",
+    "twemoji",
     "emojis"
   ],
   "files": [
@@ -30,14 +34,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/UziTech/marked-emoji.git"
+    "url": "git+https://github.com/rod2ik/marked-emoji.git"
   },
-  "author": "Tony Brix <Tony@Brix.ninja> (https://Tony.Brix.ninja)",
-  "license": "MIT",
+  "author": "Rod2ik, aka Rodrigo Schwencke <rod2ik.dev@gmail.com>, (https://github.com/rod2ik)",
+  "contributors": [
+    {"name":"Tony Brix <Tony@Brix.ninja>","url":"https://github.com/UziTech"}
+  ],
+  "license": "(GPL-3.0 OR MIT)",
   "bugs": {
-    "url": "https://github.com/UziTech/marked-emoji/issues"
+    "url": "https://github.com/rod2ik/marked-emoji/issues"
   },
-  "homepage": "https://github.com/UziTech/marked-emoji#readme",
+  "homepage": "https://github.com/rod2ik/marked-emoji#readme",
   "peerDependencies": {
     "marked": "^4.3.0"
   },
